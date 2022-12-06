@@ -103,7 +103,7 @@ def _sample_start_and_goal(sim, seed, number_retries_per_target=100):
     return source_position, target_position
 
 
-def make_gym_env(env_id, seed=0):
+def make_gym_env(env_id, seed=0, gpuLab=False):
     if 'MiniGrid' in env_id:
         env = MiniGridWrapper(gym.make(env_id))
         env.seed(seed)
@@ -128,6 +128,10 @@ def make_gym_env(env_id, seed=0):
         scene = env_id[len('HabitatNav-'):]
         assert len(scene) > 0, 'Undefined scene.'
         config.TASK_CONFIG.DATASET.SCENES_DIR += scene
+
+        # change path when running on gpuLab
+        if gpuLab:
+            config.TASK_CONFIG.DATASET.DATA_PATH = os.path.join(os.path.split(config.TASK_CONFIG.DATASET.DATA_PATH)[0], "gpu_lab_replica_{split}.json.gz")
 
         config.freeze()
 
@@ -154,7 +158,7 @@ def make_environment(flags, actor_id=1):
     # TODO: Habitat does not support naive multi-env like MiniGrid (check VectorEnv)
     # A workaround is to pass a different env to each actor
     for env_name in flags.env.split(','):
-        gym_envs.append(make_gym_env(env_name, seed))
+        gym_envs.append(make_gym_env(env_name, seed, flags.running_on_gpuLab))
 
     if 'MiniGrid' in flags.env:
         # If fixed_seed is defined, the env seed will be set at every reset(),

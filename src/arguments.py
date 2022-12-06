@@ -109,3 +109,8 @@ parser.add_argument('--model', default='vanilla',
                     choices=['vanilla', 'count', 'curiosity', 'rnd', 'ride', 'cbet'],
                     help='Model used for training the agent.'
                     )
+
+# GPULab settings
+parser.add_argument('--gpulab', action='store_false',
+                    help='Enables GPULab settings.')
+
