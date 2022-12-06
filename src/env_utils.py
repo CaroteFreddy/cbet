@@ -158,7 +158,7 @@ def make_environment(flags, actor_id=1):
     # TODO: Habitat does not support naive multi-env like MiniGrid (check VectorEnv)
     # A workaround is to pass a different env to each actor
     for env_name in flags.env.split(','):
-        gym_envs.append(make_gym_env(env_name, seed, flags.running_on_gpuLab))
+        gym_envs.append(make_gym_env(env_name, seed, flags.gpulab))
 
     if 'MiniGrid' in flags.env:
         # If fixed_seed is defined, the env seed will be set at every reset(),

@@ -111,6 +111,5 @@ parser.add_argument('--model', default='vanilla',
                     )
 
 # GPULab settings
-parser.add_argument('--gpulab', action='store_false',
+parser.add_argument('--gpulab', action='store_true',
                     help='Enables GPULab settings.')
-
