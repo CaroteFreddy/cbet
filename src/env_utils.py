@@ -30,8 +30,8 @@ try:
 
     import habitat
     from habitat_baselines.config.default import get_config
-    from habitat_baselines.common.environments import get_env_class
-    from habitat_baselines.utils.env_utils import make_env_fn
+    from habitat.core.environments  import get_env_class
+    from habitat.utils.env_utils import make_env_fn
     from habitat.utils.visualizations.utils import observations_to_image
     from habitat.datasets.pointnav.pointnav_generator import is_compatible_episode
 except:
