@@ -113,3 +113,9 @@ parser.add_argument('--model', default='vanilla',
 # GPULab settings
 parser.add_argument('--gpulab', action='store_true',
                     help='Enables GPULab settings.')
+
+# View settings
+parser.add_argument('--view', default='pano',
+                    choices=['pano', 'ego'],
+                    help='View used for training the agent.'
+                    )

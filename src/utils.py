@@ -166,7 +166,10 @@ def act(i: int, free_queue: mp.SimpleQueue, full_queue: mp.SimpleQueue,
             proj_dim = flags.hash_bits
             proj_state = np.random.normal(0, 1, (proj_dim, ego_size, 1))
             bias_state = np.random.uniform(-1, 1, (proj_dim, 1))
-            proj_change = np.random.normal(0, 1, (proj_dim, pano_size, 1))
+            if flags.view == 'pano':
+                proj_change = np.random.normal(0, 1, (proj_dim, pano_size, 1))
+            else:
+                proj_change = np.random.normal(0, 1, (proj_dim, ego_size, 1))
             bias_change = np.random.uniform(-1, 1, (proj_dim, 1))
 
         while True:

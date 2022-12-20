@@ -387,6 +387,14 @@ class EnvironmentHabitat:
         self.gym_env._viewer.display(frame)
 
     def get_panorama(self):
+        return_ego_centric_view = True
+        if return_ego_centric_view:
+            egocentric_view = self.gym_env.env._env.sim.get_observations_at(
+                self.gym_env.env._env.sim.get_agent_state().position,
+                self.gym_env.env._env.sim.get_agent_state().rotation,
+            )['rgb']
+            return np.array([egocentric_view])
+
         state = self.gym_env.env._env.sim.get_agent_state()
         rvec = np.zeros((3,))
         pano = []
