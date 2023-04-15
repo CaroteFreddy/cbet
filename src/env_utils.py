@@ -169,7 +169,7 @@ def make_environment(flags, actor_id=1):
         # dictpath is used to save visitation dictionaries (for heatmaps)
         dictpath = os.path.expandvars(os.path.expanduser(
             '%s/%s/%s' % (flags.savedir, flags.xpid, str(actor_id) + '.pickle')))
-        return EnvironmentHabitat(gym_envs, no_task=flags.no_reward, namefile=dictpath)
+        return EnvironmentHabitat(gym_envs, no_task=flags.no_reward, namefile=dictpath, view=flags.view)
     else:
         raise NotImplementedError('Undefined environment.')
 
@@ -365,7 +365,7 @@ class HabitatNavigationWrapper(gym.Wrapper):
 
 
 class EnvironmentHabitat:
-    def __init__(self, gym_envs, no_task=False, namefile=''):
+    def __init__(self, gym_envs, no_task=False, namefile='', view='pano'):
         self.all_envs = gym_envs
         self.env_iter = itertools.cycle(gym_envs)
         self.gym_env = next(self.env_iter)
@@ -374,6 +374,7 @@ class EnvironmentHabitat:
         self.no_task = True
         self.true_state_count = dict() # Count (x,y) position (the true state)
         self.namefile = namefile
+        self.view = view
 
     def render(self, mode='rgb_array', dt=10):
         if mode == "rgb_array":
@@ -387,8 +388,7 @@ class EnvironmentHabitat:
         self.gym_env._viewer.display(frame)
 
     def get_panorama(self):
-        return_ego_centric_view = True
-        if return_ego_centric_view:
+        if self.view == 'ego':
             egocentric_view = self.gym_env.env._env.sim.get_observations_at(
                 self.gym_env.env._env.sim.get_agent_state().position,
                 self.gym_env.env._env.sim.get_agent_state().rotation,
