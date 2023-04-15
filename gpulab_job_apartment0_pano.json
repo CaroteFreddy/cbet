@@ -3,10 +3,10 @@
     "description": "C-BET with panorama view in apartment 0 of Replica-Dataset",
     "request": {
         "resources": {
-            "clusterId": 6,
-            "cpus": 2,
+            "cpus": 1,
             "gpus": 1,
-            "cpuMemoryGb": 40
+            "cpuMemoryGb": 40,
+            "gpuModel": [ "V100", "1080", "A40", "2080" ]
         },
         "docker": {
             "image": "gitlab+deploy-token-8:iLvHxdZa4tyG4U5JXaCN@gitlab.ilabt.imec.be:4567/dml/gpulab/base:habitat",
