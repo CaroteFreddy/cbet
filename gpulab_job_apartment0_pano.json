@@ -10,7 +10,7 @@
         },
         "docker": {
             "image": "gitlab+deploy-token-8:iLvHxdZa4tyG4U5JXaCN@gitlab.ilabt.imec.be:4567/dml/gpulab/base:habitat",
-            "command": "bash -c \"/project_ghent/svremmer/cbet/gpujob.sh False &&cd /project_ghent/svremmer/cbet/ && python3 main.py --model cbet --env HabitatNav-apartment_0 --no_reward --intrinsic_reward_coef=0.005 --num_actors=4 --habitat 'gpu_lab_replica_\\{split\\}_apartment0.json.gz' --view pano\"", 
+            "command": "bash -c \"/project_ghent/svremmer/cbet/gpujob.sh False &&cd /project_ghent/svremmer/cbet/ && python3 main.py --model cbet --env HabitatNav-apartment_0 --no_reward --intrinsic_reward_coef=0.005 --num_actors=4 --habitat 'gpu_lab_replica_\\{split\\}_apartment0.json.gz' --view pano --total_frames=5000000\"", 
             "storage": [
                 {
                     "containerPath": "/project_ghent"
