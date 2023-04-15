@@ -29,10 +29,13 @@ echo 'Install C-BET'
 echo '**************'
 cd /project_ghent/svremmer/cbet/
 pip install -r requirements.txt || true
-echo '**************'
-echo 'Start C-BET in Habitat'
-echo '**************'
-date
-python3 main.py --model cbet --env HabitatNav-apartment_0 --no_reward --intrinsic_reward_coef=0.005 --num_actors=4 --gpulab --view ego
-echo 'Dreamer Done'
-date
+run_python="${1-True}"
+if [ "$run_python" = "True" ]; then
+    echo '**************'
+    echo 'Start C-BET in Habitat'
+    echo '**************'
+    date
+    python3 main.py --model cbet --env HabitatNav-apartment_0 --no_reward --intrinsic_reward_coef=0.005 --num_actors=4 --view ego
+    echo 'Dreamer Done'
+    date
+fi
