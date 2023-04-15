@@ -110,9 +110,9 @@ parser.add_argument('--model', default='vanilla',
                     help='Model used for training the agent.'
                     )
 
-# GPULab settings
-parser.add_argument('--gpulab', action='store_true',
-                    help='Enables GPULab settings.')
+# Habitat settings
+parser.add_argument('--habitat', default='replica_\{split\}.json.gz',
+                    help='Sets the right habitat data path')
 
 # View settings
 parser.add_argument('--view', default='pano',
